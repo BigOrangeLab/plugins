@@ -1,0 +1,9 @@
+[submodule "bol-split-testing"]
+	path = bol-split-testing
+	url = https://github.com/bigorangelab/bol-split-testing.git
+[submodule "bol-easy-translations"]
+	path = bol-easy-translations
+	url = https://github.com/bigorangelab/bol-easy-translations.git
+[submodule "big-orange-pardot"]
+	path = big-orange-pardot
+	url = https://github.com/bigorangelab/big-orange-pardot.git
