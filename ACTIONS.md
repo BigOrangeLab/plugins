@@ -14,13 +14,13 @@ All workflows in `.github/workflows/` use custom shell steps that talk to SVN di
 
 ### Required credentials
 
-Configure these under Settings → Secrets and variables → Actions in `georgestephanis/plugins`:
+Configure these under Settings → Secrets and variables → Actions in `bigorangelab/bol-plugins`:
 
 | Name | Type | Purpose |
 |------|------|---------|
 | `SVN_USERNAME` | Variable | WordPress.org SVN username (not sensitive) |
 | `SVN_PASSWORD` | Secret | WordPress.org SVN password |
-| `GH_PAT` | Secret | Personal Access Token with `repo` scope. Used by the deploy workflow to push a version-bump branch and open a PR in the upstream repo when deploying a **submodule plugin**. Also used by `release-summary.yml` to write the resolved model back into the `LLM_MODEL` variable (the default `GITHUB_TOKEN` cannot manage Actions variables). Not required for direct-directory plugins; if absent, model auto-detection still runs each time but the result isn't cached. Must have write access to the target repo — for `bethinkstudio/restrict-block-content` and `chipbennett/update-control` the PAT owner must have been granted access by those orgs/users. |
+| `GH_PAT` | Secret | Personal Access Token with `repo` scope. Used by the deploy workflow to push a version-bump branch and open a PR in the upstream repo when deploying a **submodule plugin**. Also used by `release-summary.yml` to write the resolved model back into the `LLM_MODEL` variable (the default `GITHUB_TOKEN` cannot manage Actions variables). Not required for direct-directory plugins; if absent, model auto-detection still runs each time but the result isn't cached. Must have write access to the target repo — for submodule plugins (e.g. `bigorangelab/bol-split-testing`, `bigorangelab/bol-easy-translations`, `bigorangelab/big-orange-pardot`) the PAT owner must have been granted access to those repos. |
 | `LLM_URL` | Secret | Base URL of an OpenAI-compatible LLM endpoint (e.g. `http://home.example.me:36428/v1/`). Used by `release-summary.yml` to generate the AI release summary. If unset, the summary is skipped and the release keeps its changelog + PR notes. |
 | `LLM_TOKEN` | Secret | Bearer token for the `LLM_URL` endpoint. |
 | `LLM_MODEL` | Variable (optional) | Model id to request. Acts as a self-maintaining cache: each run validates it against `GET {LLM_URL}/models` and, if it's no longer served (or unset), picks the first available model and writes that choice back to this variable (requires `GH_PAT` — see below). You may also set it by hand to pin a model. |
@@ -30,7 +30,7 @@ Configure these under Settings → Secrets and variables → Actions in `georges
 After a successful (non-dry-run) deploy, `deploy.yml` also publishes a GitHub Release in this
 monorepo — uniformly for both direct and submodule plugins:
 
-1. Tags the monorepo `<slug>/v<version>` (e.g. `ndizi-project-management/v0.9.7.0`), targeting the
+1. Tags the monorepo `<slug>/v<version>` (e.g. `big-orange-pardot/v1.2.0`), targeting the
    version-bump commit.
 2. Builds the distributable ZIP and attaches it as a release asset. The ZIP is built by
    `scripts/build-zip.sh`, which prefers `@wordpress/scripts plugin-zip` when the plugin has a
@@ -92,7 +92,7 @@ Trigger `version-check.yml` any time you want to regenerate the README status wi
 ```json
 {
   "plugin-slug": "1.2.3",
-  "omnisearch": "trunk"
+  "always-trunk-plugin": "trunk"
 }
 ```
 

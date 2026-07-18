@@ -1,5 +1,5 @@
 {
-    "name": "georgestephanis/plugins",
+    "name": "bigorangelab/plugins",
     "description": "WordPress.org plugins portfolio — dev tooling only",
     "license": "GPL-2.0-or-later",
     "require-dev": {

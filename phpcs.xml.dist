@@ -1,31 +1,12 @@
 <?xml version="1.0"?>
-<ruleset name="georgestephanis-plugins">
-    <description>WordPress Coding Standards for the georgestephanis plugin portfolio.</description>
+<ruleset name="bol-plugins">
+    <description>WordPress Coding Standards for the Big Orange Lab plugin portfolio.</description>
 
     <!-- Scan every plugin. Each plugin also ships its own phpcs.xml for targeted,
          per-plugin tuning (minimum_supported_wp_version, testVersion). -->
-    <file>./add-ids-to-header-tags</file>
-    <file>./automatic-internal-links</file>
-    <file>./big-emoji-comments</file>
-    <file>./category-posts-widget</file>
-    <file>./custom-content-width</file>
-    <file>./footer-on-homepage</file>
-    <file>./go-dark</file>
-    <file>./google-tag-manager</file>
-    <file>./hugh</file>
-    <file>./legacy-jetpack-custom-css-editor</file>
-    <file>./ndizi-project-management</file>
-    <file>./omnisearch</file>
-    <file>./press-this-v2</file>
-    <file>./random-blocks</file>
-    <file>./restrict-block-content</file>
-    <file>./reusable-block-count</file>
-    <file>./simple-404-keyword-insertion</file>
-    <file>./tarot</file>
-    <file>./the</file>
-    <file>./theme-downloader</file>
-    <file>./tuft-feedback</file>
-    <file>./update-control</file>
+    <file>./bol-split-testing</file>
+    <file>./bol-easy-translations</file>
+    <file>./big-orange-pardot</file>
 
     <!-- Exclude build artifacts, deps, and VCS internals -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
