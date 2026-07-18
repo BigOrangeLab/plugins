@@ -4,35 +4,18 @@ Guidance for AI coding agents working in this repository.
 
 ## Plugin styles
 
-Most plugins are **single-file, classically-structured PHP** — one static class with a `::go()` method that bootstraps all hooks. A few are more involved:
-
-- **`restrict-block-content`** — modern: namespaced PHP (`Bethink\RestrictBlockContent`), `@wordpress/scripts` build pipeline, JSX block editor sidebar (`src/index.jsx`). Requires `npm run build`.
-- **`tarot`** — block plugin with SCSS (`tarot.scss` → `tarot.css.map`), block assets under `blocks/`.
-- **`omnisearch`** — multi-file admin plugin with a `wp-admin/` subdirectory.
-- **`press-this-v2`** — multi-file, no build step.
-- **`tuft-feedback`** — has a `package.json` for vendored JS (copied via `postinstall`), no compilation step.
+Most plugins are single-file, classically-structured PHP. Some may have a build step if they include modern JavaScript or CSS.
 
 ## Build tooling
 
-Only `restrict-block-content` has a JS build step:
-
-```bash
-cd restrict-block-content
-npm install
-npm run build    # production build
-npm run start    # watch mode
-npm run lint:js  # ESLint via wp-scripts
-npm run lint:css # Stylelint via wp-scripts
-```
+If a plugin has a `package.json`, it may have a build step. Check the `scripts` section of the `package.json` for commands like `build` or `start`.
 
 No repo-wide build system. Each plugin is self-contained.
 
 ## Coding conventions
 
-- Older plugins use procedural static classes without namespaces.
-- Newer plugins (`restrict-block-content`) use PSR-4 namespacing under `Bethink\`.
 - All plugins are GPL-2.0-or-later.
-- Default branch for this monorepo is `main`. Some submodule plugins use `trunk` as their default branch — check before branching.
+- Default branch for this monorepo is `main`. Submodule plugins will have their own default branch.
 
 ## PHP linting (phpcs / WPCS)
 
